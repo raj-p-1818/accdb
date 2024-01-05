@@ -7,12 +7,8 @@ WORKDIR C:\\app
 COPY . .
 COPY accessdatabaseengine_X64.exe C:\\app\\
 RUN C:\app\accessdatabaseengine_X64.exe
-
 ARG INPUT_BUCKET_PATH
 ARG OUTPUT_BUCKET_PATH
-
-
-
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 # Install Python
@@ -23,5 +19,7 @@ RUN Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.6/python-3.9.6
 RUN python --version
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+# Expose the port on which the Flask application will run
+EXPOSE 5000
 # Run the application
 CMD ["python", "main.py"]
