@@ -23,8 +23,7 @@ def process_accdb():
 
     path = input_path
     path_parts = path.split("/")[-1].split('.')[0] 
-    filename = path_parts[-1] 
-    db_name = filename.split('.')[0] 
+    db_name= path_parts
 
 
 
